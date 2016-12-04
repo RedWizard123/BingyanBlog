@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="css/clearfix.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/simditor.css" />
+    <script src="JavaScript/main.js"></script>
+    <script src="JavaScript/MarkdownIME.min.js"></script>
+    <script src="JavaScript/Editor.js"></script>
+    <script src="JavaScript/twemoji.min.js"></script>
+    <title>
+        Faraway的个人博客
+    </title>
+</head>
+<body>
+<header class="normal Editor">
+    <div class="search-box">
+        <form>
+            <label for="search-for"></label>
+            <input id="search-for" type="text"/><button><span class="icon-font"></span></button>
+        </form>
+    </div>
+</header>
+<div class="body clearfix Editor" >
+    <div class="main Editor">
+        <div class="Editor-title">
+            <h1>新建博文</h1>
+            <span></span>
+        </div>
+        <div class="tool-bar">
+            <span class="tool-bar-icon">
+                <select id="color-select">
+                    <option>red</option>
+                    <option>orange</option>
+                    <option>yellow</option>
+                    <option>green</option>
+                    <option>teal</option>
+                    <option>blue</option>
+                    <option>purple</option>
+                </select>
+                <button id="font-color-change">A+</button>
+                <button>A-</button>
+            </span>
+        </div>
+        <div class="textarea-con">
+            <div id="Editor-title" contentEditable="true">
+                <p>标题</p>
+            </div>
+            <div id="Editor" contentEditable="true">
+                <p>正文</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

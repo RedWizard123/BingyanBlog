@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="css/clearfix.css" rel="stylesheet" type="text/css"/>
+    <script src="JavaScript/main.js"></script>
+    <script src="JavaScript/articles.js"></script>
+    <title>
+        Faraway的个人博客
+    </title>
+</head>
+<body>
+<header class="normal">
+    <div class="search-box">
+        <form>
+            <label for="search-for"></label>
+            <input id="search-for" type="text" PLACEHOLDER="搜索"/><button><span class="icon-font"></span></button>
+        </form>
+    </div>
+</header>
+<div class="body clearfix" >
+    <div class="left" id="particles-js">
+        <div class="left-avatar">
+            <img src="images/avatar.png"/>
+        </div>
+        <p class="left-name">Faraway</p><br>
+        <p class="left-motto">壁立千仞，无欲则刚</p>
+        <a href="index.html" class="left-links">首页</a>
+        <a href="#" class="left-links">随笔</a>
+        <a href="#" class="left-links current">文章</a>
+        <a href="#" class="left-links">关于</a>
+    </div>
+    <div class="main article">
+
+        <a class="main-articles-a standard" href="#">
+            <img src="images/{{pic}}" />
+            <div class="articles-desc">
+                <p>{{title}}</p>
+                <p>{{articles-desc}}</p>
+
+            </div>
+            <div class="author-info">
+                <span class="author-name">{{name}}</span>
+                <span class="complete-date">{{date}}</span>
+                <span class="like"><span class="icon-font"> {{num1}}</span><span class="icon-font"> {{num2}}</span></span>
+            </div>
+        </a>
+
+    </div>
+</div>
+</body>
+</html>

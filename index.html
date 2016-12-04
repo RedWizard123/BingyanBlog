@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="css/clearfix.css" rel="stylesheet" type="text/css"/>
+    <script src="JavaScript/main.js"></script>
+    <title>
+        Faraway的个人博客
+    </title>
+</head>
+<body>
+<header class="normal">
+    <div class="search-box">
+        <form>
+            <label for="search-for"></label>
+            <input id="search-for" type="text"/><button><span class="icon-font"></span></button>
+        </form>
+    </div>
+</header>
+<div class="body clearfix" >
+    <div class="left" id="particles-js">
+        <div class="left-avatar">
+            <img src="images/avatar.png"/>
+        </div>
+        <p class="left-name">Faraway</p><br>
+        <p class="left-motto">壁立千仞，无欲则刚</p>
+        <a href="#" class="left-links current">首页</a>
+        <a href="#" class="left-links">随笔</a>
+        <a href="article.html" class="left-links">文章</a>
+        <a href="#" class="left-links">关于</a>
+    </div>
+    <div class="main">
+        <div class="title">
+            <h1>周日晚组会会议记录（2016.11.13）</h1><br>
+
+        </div>
+        <section>
+            大前端 组会会议记录<br>
+            <h3>一、会议前</h3>
+            大家轮流说了自己这个星期学了什么，具体每个人说了什么，当时没有记录，重要的如下：学数据结构和算法分析很有用；最近几周大家都有些忙……<br>
+            <h3>二、分享</h3>
+            <b>常明明的分享</b><br>
+            前端学习的一些注意事项<br>
+            1. 要会翻墙<br>
+            2. 要用Google<br>
+            3. 要用StackOverflow<br>
+            4. 要多看官方文档来系统学习某个知识<br>
+            5. 开发工具上，编辑器推荐sublime text/vim/atom，IDE推荐Webstorm<br>
+            6. 资源上，电子书推荐皮皮书屋/it-eBook，教程推荐慕课网，同事推荐多看官方文档，多溜达GitHub<br>
+            7. 博客方面，廖雪峰，阮一峰，张兴旭，Tom大叔，腾讯Alloyteam，ISUX，CDC，淘宝UED等，以及CSS-tricks，HTML5-rocks<br>
+            8. 笔记方面，read-it-later：pocket、instapaper，笔记工具：印象笔记，有道云笔记，为知（稍后徐新航提到了OneNote也很好用）<br>
+            9. 设计对于前端工作者也很重要，以下网站：Dirbbble、优设、花瓣、Pinterest<br>
+            10. 用一些方式改变自己的习惯，比如：把浏览器的搜索栏的搜索引擎改为Google，可以改掉自己用百度习惯<br>
+            <br>
+            <b>夏浩的分享</b><br>
+            Vertical-align的相关知识<br>
+            1. 该属性定义行内元素的基线相对于该元素所在行的基线的垂直对齐。<br>
+            2. 另一定义：用来指定行内元素（inline/inline-block）或表格单元格（table-cell）元素的垂直对齐方式。<br>
+            3. Line-box模型：“每一行称为一条Line Box，它又是由这一行的许多inline-box组成，它的高度可以直接由line-height 决定，line boxes的高度垂直堆叠形成了containing box的高度，就是我们见到的div或是p标签之类 的高度了。”<br>
+            4. “当你只有一把锤子一切看起来都像是颗钉子”-标签外部的是匿名inline-box。<br>
+            <br>
+            5. Line-height：两行文字基线的距离；baseline：整个line-box只有一条基线。<br>
+            6. 一些情况下的表现，inline元素的表现： 其中，红线是行边界，蓝线是基线，绿线是文字边界。<br>
+            <br>
+            7. 一些情况下：inline-box元素的表现：<br>
+            <br>
+            (1) 在有处于正常流内容的情况下，inline-block元素的baseline就是最后一个作 为内容存在的元素的baseline，这个元素的baseline的确定就要根据他自身来确 定了。(如左图)<br>
+            (2)在overflow属性不为visible的情况下(中图)，或者没有内容但是宽、高一定的情况下(中图)，baseline就是margin-box的下边了。<br>
+            8. line-box中的所有元素都会影响到baseline的位置。<br>
+            9. Vertical-align的属性值<br>
+            <br>
+            (1) keyword values：baseline | sub | super | text-top | text-bottom | middle | top | bottom<br>
+            (2) length/percentage values ：em, px,%<br>
+            (3)默认属性：baseline<br>
+            简介：<br>
+            Baseline:元素基线与父元素的基线对齐。<br>
+            Sub:元素基线与父元素的下标基线对齐。<br>
+            Text-top:元素顶端与父元素字体的顶端对齐。<br>
+            Text-bottom:元素底端与父元素字体的底端对齐。<br>
+            Middle:元素中线与父元素的小写x中线对齐。<br>
+            Top:元素及其后代的顶端与整行的顶端对齐。<br>
+            Bottom:元素及其后代的底端与整行的底端对齐。<br>
+            length:元素基线超过父元素的基线指定高度。可以取负值。\<br>        percentage:同 length , 百分比相对于 line-height 。（基础的知识点还是要记牢的！）<br>
+            <br>
+            <b>徐新航的分享</b><br>
+            用了一些很demo的demo向我们展示了……几个应用的例子（2、3）<br>
+            1. 表格的特点，概括他的话，就是：同行的单元格等高，同列的单元格等宽（联想方格纸）<br>
+            2. 宽度自适应（经典导航条）<br>
+            <br>
+            这种布局：左右定宽，中间自适应。<br>
+            Flex box很灵活，但是会导致兼容性问题。如果有两块区域没预指定宽度，按照table-layout处理<br>
+            也可以用：左右margin + float来实现(很不错)<br>
+            3. 高度自适应<br>
+            我们以前会用浮动……但是：<br>
+            <br>
+            (1)需要消除浮动(2)不支持不定高的列表 如图，右下角的被第一行第三个卡住了……<br>
+            我们以前也会用inline-block…缺点如下：宽度会自适应，不知道列的情况下<br>
+            所以我们：用display:table-cell，无论列表几个，都能平分空间<br>
+            但是也有缺点：需要额外的容器；适合做单行<br>
+            4. 所以，徐学长告诉我们，按需选择需要的。（他给我们展示了用table-layout的fixed属性，使一行四个光棍节有关的文本框平均分布……）<br>
+            5. 中间插了一下：响应式导航栏；<br>
+            首先，定义display：table，可以使导航栏项目增加而总宽度不变，当文档宽度减小，最后宽度会和文档等宽。但达到移动端的宽度的时候，取消display：table，该为block，就变成了竖的导航栏，也就是移动端常用的。<br>
+            6. 什么表格CSS属性可以使用？<br>
+            Empty-cell 否<br>
+            border-spacing 可<br>
+            table-layout 可<br>
+            border-collapse 否<br>
+            按照当时的争议来看，第四个用途还是很大的，他决定了是否合并后的border还能连成一条线，我们的老司机cmm如是说。<br>
+            <br>
+            <b>江高华的分享</b><br>
+            江高华思维敏捷，反应迅速。然而我并没有听的很懂。他主要说了：<br>
+            1. gulp？？的一些问题，貌似是代理的错误。但是老司机cmm说用代理是很好的（http-proxy-???????）<br>
+            2. 头脑风暴的一个小bug，正好碰上了夏浩的vertical-align。解决方案：不是，父元素的line-height的问题，把父元素的font-size条为零，问题基本消失，明白了<br>
+            3. 两个算法：找字符串的kmp算法，最短路径算法……由于没有提前告知，一脸懵逼。<br>
+            <br>
+            <b>俞亮 的分享</b><br>
+            由于和夏浩装车，讲的很简单。主要是两点<br>
+            1. 强调了半间距，一半上一半下<br>
+            2. 最高的元素决定基线。很好想的<br>
+            <br>
+            <h3>三、Code Review</h3>
+            时间已经不多了，我们就先来看看夏浩的黑市吧<br>
+            1. 老司机指出，代码管理系统上，没有.gitignore，导致很多与源代码无关的文件被传到了GitHub上。<br>
+            2. 删除一些编译留下的缓存<br>
+            3. 中间常明明说文档的目录结构有点乱。<br>
+            4. 关于插入HTML的讨论：究竟是设置不可见元素来复制、替换，还是在js里面字符串拼接，或者是俞亮的…….createElement()？指出：字符串拼接性能更好一些，复制、替换更优雅一些。<br>
+            我们又看常明明的代码；他的代码我不怎么看得懂，就是大家都觉得他的工作目录的结构很整齐。<br>
+            他还指出：<br>
+            1. 非常有条理的目录结构<br>
+            2. 高度的仿真<br>
+            3. 像素级的还原<br>
+            4. 优秀负责的、懂设计、会标注（工程制图般的标注）的设计师、前端工程师<br>
+            对于做好一个网站很重要。<br>
+            （以及后台挂了对一个网站的演示到底有多致命的伤害）<br>
+            <h3>四、会议尾声</h3>
+            会议就要结束了，这次人来的很齐，大家讨论的很好（反正我是学会了很多知识）<br>
+            师徒匹配：<br>
+            1. 江高华（麦冬）和江高华（洪志远）由郝聚聚带<br>
+            2. 俞亮被放养……哪里，是常明明带<br>
+            3. 郑钦城还有……徐新航由夏浩带<br>
+            项目分配：<br>
+            1. UED要重写代码，俞亮的 上演 建议继续写下去。常明明再次勇担重任<br>
+            2. 新人跟任务来。<br>
+            <h3>总结：</h3><br>
+            1. 此次组会大部分时间用于分享，但是可以看出，分享着和被分享者的准备都不是很充分。由此常明明要求以后大家都要分享而且要做PPT等，也可提前说好内容，由大家自行预习。<br>
+            2. 大家多看书，反复看，老司机说《JavaScript高级编程指导》和《JavaScript权威指南》被他的一个熟人看了六七遍。（佩服）<br>
+            3. 项目check放在会后进行<br>
+            会议圆满结束，大家结伴而归<br>
+            洪志远<br>
+        </section>
+    </div>
+</div>
+</body>
+</html>
