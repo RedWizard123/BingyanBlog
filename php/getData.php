@@ -16,7 +16,7 @@ switch ($_GET["req"]){
             die(json_encode(["result"=>"failed","error"=>mysql_error()]));
         }*/
         $data=[];
-        while($row=mssql_fetch_row($r)){
+        while($row=mysql_fetch_row($r)){
             $data[]=$row;
         }
         $res=[
