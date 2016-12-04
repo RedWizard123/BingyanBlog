@@ -12,9 +12,9 @@ switch ($_GET["req"]){
         $SQL = "SELECT * FROM `articles` LIMIT 0, 30 ";
         $r = mysql_query($SQL,$conn);
 
-        if($r==false){
+        /*if($r==false){
             die(json_encode(["result"=>"failed","error"=>mysql_error()]));
-        }
+        }*/
         $data=[];
         while($row=mssql_fetch_row($r)){
             $data[]=$row;
