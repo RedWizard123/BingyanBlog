@@ -10,6 +10,7 @@
 include("MySQL.config.php");
 switch ($_GET["req"]){
     case "addArticle":
+        $time=time();
         $SQL = "INSERT INTO `dfakvRTwBRhPbzbToIUz`.`articles` (
         `id`,
         `writer`,
@@ -28,7 +29,7 @@ switch ($_GET["req"]){
         '',
         '0',
         'hbhvbehfcbhevcbjehdcbedfvgbedchcbfvdcgechbed',
-        UNIX_TIMESTAMP(), 
+        CURRENT_TIMESTAMP, 
         UNIX_TIMESTAMP()
         );";
         header("Content-Type:application/json;charset=UTF-8");
