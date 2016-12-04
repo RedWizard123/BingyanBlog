@@ -6,14 +6,14 @@
  * Time: 下午11:36
  */
 include("MySQL.config.php");
-header("Content-Type:application/json;charset=UTF-8");
 switch ($_GET["req"]){
     case "articleList":
+        header("Content-Type:application/json;charset=UTF-8");
         $SQL = "SELECT * FROM `articles` LIMIT 0, 30 ";
         $r = mysql_query($SQL,$conn);
 
         if($r==false){
-            echo(json_encode(["result"=>"failed","error"=>mysql_error()]));
+            die(json_encode(["result"=>"failed","error"=>mysql_error()]));
         }
         $data=[];
         while($row=mssql_fetch_row($r)){
@@ -24,9 +24,6 @@ switch ($_GET["req"]){
             "data"=>$data
         ];
         echo(json_encode($res));
-
-
-
         break;
 
 
