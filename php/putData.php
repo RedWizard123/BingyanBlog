@@ -29,8 +29,8 @@ switch ($_GET["req"]){
         '',
         '0',
         'hbhvbehfcbhevcbjehdcbedfvgbedchcbfvdcgechbed',
-        CURRENT_TIMESTAMP, 
-        UNIX_TIMESTAMP()
+        NULL, 
+        CURRENT_TIMESTAMP
         );";
         header("Content-Type:application/json;charset=UTF-8");
         if(mysql_query($SQL)){
