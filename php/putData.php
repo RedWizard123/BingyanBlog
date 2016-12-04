@@ -31,6 +31,7 @@ switch ($_GET["req"]){
         UNIX_TIMESTAMP(), 
         UNIX_TIMESTAMP()
         );";
+        header("Content-Type:application/json;charset=UTF-8");
         if(mysql_query($SQL)){
             echo(json_encode(["result"=>"success"]));
         }else{
