@@ -40,7 +40,7 @@
 <div class="body clearfix simditor" style="border: 0;">
     <div class="left" id="particles-js">
         <div class="left-avatar">
-            <img src="images/avatar.png"/>
+            <img src="upload/avatar"/>
         </div>
         <p class="left-name"><?php echo($row->name);?></p><br>
         <p class="left-motto"><?php echo($row->motto);?></p>

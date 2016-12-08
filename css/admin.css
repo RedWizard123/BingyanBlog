@@ -1,3 +1,7 @@
+ul{
+    list-style: none;
+}
+
 div.login-box{
     width:100%;
     height:100%;
@@ -100,4 +104,81 @@ div.admin-main>div.admin-left>div>a:hover{
 }
 div.admin-main>div.admin-left>div>a:hover{
     opacity: 0.6;
+}
+div.admin-main > div.admin-main-box {
+    width: calc(100% - 240px);
+    margin: auto 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 400px;
+    border: #a6a6a6 solid 1px;
+    border-radius: 8px;
+    bottom: 0;
+    overflow: hidden;
+}
+div.admin-main-box>div{
+    width:100%;
+    height:100%;
+    position: absolute;
+    background-color: #C9D8DB;
+    overflow: auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+}
+
+div.admin-main-box>div.current{
+    z-index: 10;
+}
+ul.articles-ul{
+    width:100%;
+}
+
+ul.articles-ul>li{
+    display: block;
+    height:2em;
+}
+ul.articles-ul>li:hover{
+    background-color: #9AA8DE;
+}
+ul.articles-ul>li.hidden{
+    display: none;
+}
+ul.articles-ul>li>span{
+    width:100px;
+    display: inline-block;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+ul.articles-ul>li>span.articles-list-n,
+ul.articles-ul>li>span.articles-list-id{
+    width:40px;
+}
+ul.articles-ul>li>span.articles-list-desp{
+    width:200px;
+    overflow-wrap: break-word;
+
+
+}
+ul.articles-ul>li>span.articles-list-title{
+    width:150px;
+
+
+}
+form.uploadForm>label{
+    display: block;
+    width:200px;
+}
+form.uploadForm>img{
+    width:100px;
+    height:100px;
+    display: block;
+}
+form.uploadForm>input[type="button"]{
+    height:30px;
+    display: block;
+    width:60px;
+    margin:10px 0;
+
 }

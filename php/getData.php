@@ -34,6 +34,32 @@ switch ($_GET["req"]){
         ];
         echo(json_encode($res));
         break;
+    case "articleListAll":
+        $SQL = "SELECT * FROM `articles`";
+        $r = $mysql->query($SQL);
+        $data=[];
+        while($row=$r->fetch_object()){
+            $value=urldecode($row->value);
+            $obj=[
+                "id"=>$row->id,
+                "writer"=>$row->writer,
+                "sub_articles"=>delete_comma($row->sub_articles),
+                "like"=>delete_comma($row->like),
+                "value"=>urldecode($row->value),
+                "title"=>$row->title,
+                "desp"=>$row->desp,
+                "pic"=>$row->pic,
+                "type"=>$row->type,
+                "create_date"=>$row->create_date
+            ];
+            $data[]=$obj;
+        }
+        $res=[
+            "result"=>"success",
+            "data"=>$data
+        ];
+        echo(json_encode($res));
+        break;
     case "getValue":
         $SQL = "SELECT * FROM `articles` WHERE `id`={$_GET["id"]};";
         $r = $mysql->query($SQL);

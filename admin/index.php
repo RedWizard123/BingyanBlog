@@ -2,7 +2,7 @@
 include("../php/MySQL.config.php");
 include("../php/Function.php");
 if(checkCookie()){
-    header("location:../Editor.php");
+    header("location:admin.php");
 }
 ?>
 <!DOCTYPE html>

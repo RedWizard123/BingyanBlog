@@ -106,6 +106,7 @@ switch ($_GET["req"]){
     case "uploadAvatar":
         if(isset($_FILES["avatar"])&&isset($_FILES["avatar"]["type"])){
             if((($_FILES["avatar"]["type"] == "image/gif") || ($_FILES["avatar"]["type"] == "image/jpeg") || ($_FILES["avatar"]["type"] == "image/jpg") || ($_FILES["avatar"]["type"] == "image/pjpeg") || ($_FILES["avatar"]["type"] == "image/x-png") || ($_FILES["avatar"]["type"] == "image/png")) && ($_FILES["avatar"]["size"] < 2048000)){
+
                 move_uploaded_file($_FILES["avatar"]["tmp_name"], "../upload/".sha1(time()));
                 echo(json_encode(["result"=>"success","URL"=>sha1(time())]));
             }else{
@@ -213,6 +214,34 @@ switch ($_GET["req"]){
             echo(json_encode(["result"=>"failed","error"=>"No Post data!"]));
         }
         break;
+    case "deleteArticle":
+        if(isset($_POST["id"])){
+            if(!checkCookie()){
+                die(json_encode(["result"=>"failed","error"=>"Permission Denied!"]));
+            }
+            $SQL="DELETE FROM `articles` WHERE `id`={$_POST["id"]};";
+            if($mysql->query($SQL)){
+                echo(json_encode(["result"=>"success"]));
+            }else{
+                echo(json_encode(["result"=>"failed","error"=>"Query Error!"]));
+            }
+        }else{
+            echo(json_encode(["result"=>"failed","error"=>"No Post data!"]));
+        }
+        break;
+    case "putBlogerAvatar":
+        if(isset($_FILES["avatar"])&&isset($_FILES["avatar"]["type"])){
+            if((($_FILES["avatar"]["type"] == "image/gif") || ($_FILES["avatar"]["type"] == "image/jpeg") || ($_FILES["avatar"]["type"] == "image/jpg") || ($_FILES["avatar"]["type"] == "image/pjpeg") || ($_FILES["avatar"]["type"] == "image/x-png") || ($_FILES["avatar"]["type"] == "image/png")) && ($_FILES["avatar"]["size"] < 2048000)){
+                move_uploaded_file($_FILES["avatar"]["tmp_name"], "../upload/avatar");
+                echo(json_encode(["result"=>"success"]));
+            }else{
+                echo(json_encode(["result"=>"failed","error"=>"Failed!"]));
+            }
+        }else{
+            die(json_encode(["result"=>"failed","error"=>"No file data!"]));
+        }
+        break;
+
     default:
         echo(json_encode(["result"=>"failed","error"=>"Unsolved request!"]));
         break;
