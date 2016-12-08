@@ -1,0 +1,103 @@
+div.login-box{
+    width:100%;
+    height:100%;
+}
+
+div.login-box>form{
+    width:300px;
+    height:250px;
+    background-color: #FFF;
+    border: solid 1px #999999;
+    border-radius:8px;
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto auto;
+    box-sizing: border-box;
+    color: #919191;
+    padding:30px 48px;
+}
+
+div.login-box>form>input[type="text"],
+div.login-box>form>input[type="password"]{
+    width: 200px;
+    height: 30px;
+    border: 0;
+    border-bottom: solid 1px #9AA8DE;
+    background-color: transparent;
+    display: block;
+    margin: 10px auto;
+    box-sizing: border-box;
+}
+div.login-box>form>input[type="button"]{
+    background-color: #b3d4fd;
+    border: 0;
+    float: right;
+    border-radius: 4px;
+    width:80px;
+    height:30px;
+    margin-top: 10px;
+    transition: all 0.25s ease-in-out;
+    box-sizing: border-box;
+}
+
+div.login-box>form>input[type="button"]:hover{
+    opacity: 0.8;
+}
+div.login-box>form>input[type="button"]:focus,
+div.login-box>form>input[type="button"]:active{
+    background-color: #81c2d6;
+}
+
+
+div.admin-main{
+    width:1000px;
+    min-height: 400px;
+    height: calc(100% - 60px);
+    background-color: white;
+    position: relative;
+    top:60px;
+    margin:0 auto;
+}
+div.admin-main>div.admin-left{
+    width:200px;
+    background-color: #b3d4fd;
+    height:100%;
+    position: relative;
+}
+div.admin-main>div.admin-left>div{
+    height:160px;
+    width:200px;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto auto ;
+}
+div.admin-main>div.admin-main-box{
+    width:calc(100% - 200px);
+    margin-left:200px;
+}
+
+
+div.admin-main>div.admin-left>div>a{
+    display: block;
+    height:40px;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-right: solid 3px transparent;
+    line-height: 40px;
+    transition: all 0.25s ease-in-out ;
+}
+div.admin-main>div.admin-left>div>a.current,
+div.admin-main>div.admin-left>div>a:hover{
+    border-right: solid 3px white;
+    background-color:#b3e4fd;
+}
+div.admin-main>div.admin-left>div>a:hover{
+    opacity: 0.6;
+}
