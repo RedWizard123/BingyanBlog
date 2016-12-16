@@ -266,10 +266,10 @@ window.onload=function () {
     */
     var data=[];
     reqwest({
-        url: 'php/getData.php?req=articleList',
+        url: 'php/Data.php?req=articleList',
         method: 'get',
         success: function(resp){
-            if(resp.result=="success"){
+            if(resp.result=="successful"){
                 for(var a=0;a<resp.data.length;a++){
                     data.push(resp.data[a]);
                 }
@@ -288,10 +288,10 @@ window.onload=function () {
                     HTML=HTML.replace("{{pic}}","title1.jpg");
                     var num1=0;
                     var num2=0;
-                    if(data[i].sub_articles==""){
+                    if(data[i].comments==""){
                         num1=0;
                     }else{
-                        num1=data[i].sub_articles.split(",").length;
+                        num1=data[i].comments.split(",").length;
                     }
                     if(data[i].like==""){
                         num2=0;

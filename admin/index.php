@@ -33,7 +33,7 @@ if(checkCookie()){
     </div>
 </header>
 <div class="login-box">
-    <form action="../php/putData.php?req=login" method="post">
+    <form action="../../Blog/php/Data.php?req=login" method="post">
         <h1>Login</h1>
         <input type="text" placeholder="用户名" name="name" id="in1"/>
         <input type="password" placeholder="密码" name="password" id="in2"/>

@@ -42,13 +42,15 @@ switch ($_GET["req"]){
             $value=urlencode($value);
             $title[1]=delete_tags($title[1]);
             $desp[1]=delete_tags($desp[1]);
-            $SQL = "INSERT INTO `{$db_name}`.`articles` (
+            $SQL = "INSERT INTO `articles` (
             `id`,
             `writer`,
             `type`,
             `reply_to`,
-            `sub_articles`,
+            `comments`,
+            `comments_num`,
             `like`,
+            `like_num`,
             `value`,
             `title`,
             `desp`,
@@ -58,10 +60,12 @@ switch ($_GET["req"]){
             )VALUES(
             NULL, 
             '{$_POST["writer"]}',
-            '0',
-            '0',
+            0,
+            0,
             '',
+            0,
             '',
+            0,
             '{$value}',
             '{$title[1]}',
             '{$desp[1]}',
@@ -73,7 +77,7 @@ switch ($_GET["req"]){
                 $SQL="SELECT * FROM `articles` ORDER BY `articles`.`id` DESC;";
                 $r=$mysql->query($SQL);
                 $row=$r->fetch_object();
-                echo(json_encode(["result"=>"success","id"=>$row->id]));
+                echo(json_encode(["result"=>"successful","id"=>$row->id]));
             }else{
                 echo(json_encode(["result"=>"failed","error"=>$mysql->error]));
             }
@@ -92,10 +96,10 @@ switch ($_GET["req"]){
             `title` = '{$_POST["title"]}',
             `desp` = '{$_POST["desp"]}',
             `pic` = '{$_POST["pic"]}'
-            WHERE `articles`.`id` ={$_POST["id"]};
+            WHERE `id` ={$_POST["id"]};
             ";
             if($mysql->query($SQL)){
-                echo(json_encode(["result"=>"success"]));
+                echo(json_encode(["result"=>"successful"]));
             }else{
                 echo(json_encode(["result"=>"failed","error"=>$mysql->error]));
             }
@@ -108,7 +112,7 @@ switch ($_GET["req"]){
             if((($_FILES["avatar"]["type"] == "image/gif") || ($_FILES["avatar"]["type"] == "image/jpeg") || ($_FILES["avatar"]["type"] == "image/jpg") || ($_FILES["avatar"]["type"] == "image/pjpeg") || ($_FILES["avatar"]["type"] == "image/x-png") || ($_FILES["avatar"]["type"] == "image/png")) && ($_FILES["avatar"]["size"] < 2048000)){
 
                 move_uploaded_file($_FILES["avatar"]["tmp_name"], "../upload/".sha1(time()));
-                echo(json_encode(["result"=>"success","URL"=>sha1(time())]));
+                echo(json_encode(["result"=>"successful","URL"=>sha1(time())]));
             }else{
                 echo(json_encode(["result"=>"failed","error"=>"Failed!"]));
             }
@@ -124,21 +128,13 @@ switch ($_GET["req"]){
             if($n>=1){
                 setcookie("username",$_POST["username"],time()+3600*15*24,"/");
                 setcookie("key",sha1(sha1($_POST["username"]) . $_POST["sha1_password"]),time()+3600*15*24,"/");
-                echo(json_encode(["result"=>"success"]));
+                echo(json_encode(["result"=>"successful"]));
             }else{
                 echo(json_encode(["result"=>"failed","error"=>"No Matching User!"]));
             }
         }else{
             echo(json_encode(["result"=>"failed","error"=>"No Post data!"]));
         }
-
-
-
-
-
-
-
-
         break;
     case "likePlus":
         if(isset($_GET["id"])){
@@ -152,11 +148,12 @@ switch ($_GET["req"]){
                 if(array_search($_SERVER["HTTP_HOST"],$ips)){
                     echo(json_encode(["result"=>"failed","error"=>"Already Likes!"]));
                 }else{
-                    $SQL="UPDATE `articles` SET 
-                    `like`=CONCAT(`like`,',{$_SERVER["HTTP_HOST"]}')
+                    $SQL="UPDATE `articles` SET
+                    `like`=CONCAT(`like`,',{$_SERVER["HTTP_HOST"]}'),
+                    `like_num`=`like_num`+1
                     WHERE `id`={$_GET["id"]};";
                     $mysql->query($SQL);
-                    echo(json_encode(["result"=>"success"/*,"likes_num"=>count($ips)+1*/]));
+                    echo(json_encode(["result"=>"successful"/*,"likes_num"=>count($ips)+1*/]));
                 }
             }
         }else{
@@ -172,8 +169,10 @@ switch ($_GET["req"]){
             `writer`,
             `type`,
             `reply_to`,
-            `sub_articles`,
+            `comments`,
+            `comments_num`,
             `like`,
+            `like_num`,
             `value`,
             `title`,
             `desp`,
@@ -186,7 +185,9 @@ switch ($_GET["req"]){
                 '1',
                 '{$_POST["id"]}',
                 '',
+                0,
                 '',
+                0,
                 '{$_POST["comment"]}',
                 '',
                 '',
@@ -198,12 +199,13 @@ switch ($_GET["req"]){
                 $SQL="SELECT LAST_INSERT_ID() AS id";
                 $r=$mysql->query($SQL);
                 $row=$r->fetch_object();
-                //echo(json_encode(["result"=>"success","id"=>$row->id]));
+                //echo(json_encode(["result"=>"successful","id"=>$row->id]));
                 $SQL="UPDATE `articles` SET 
-                `sub_articles`=CONCAT(`sub_articles`,',{$row->id}')
+                `comments`=CONCAT(`comments`,',{$row->id}'),
+                `comments_num`=`comments_num`+1
                 WHERE `id`={$_POST["id"]}";
                 if($mysql->query($SQL)){
-                    echo(json_encode(["result"=>"success","comments_num"=>$row->id]));
+                    echo(json_encode(["result"=>"successful","comments_num"=>$row->id]));
                 }else{
                     echo(json_encode(["result"=>"failed","error"=>$mysql->error]));
                 }
@@ -221,7 +223,7 @@ switch ($_GET["req"]){
             }
             $SQL="DELETE FROM `articles` WHERE `id`={$_POST["id"]};";
             if($mysql->query($SQL)){
-                echo(json_encode(["result"=>"success"]));
+                echo(json_encode(["result"=>"successful"]));
             }else{
                 echo(json_encode(["result"=>"failed","error"=>"Query Error!"]));
             }
@@ -233,7 +235,7 @@ switch ($_GET["req"]){
         if(isset($_FILES["avatar"])&&isset($_FILES["avatar"]["type"])){
             if((($_FILES["avatar"]["type"] == "image/gif") || ($_FILES["avatar"]["type"] == "image/jpeg") || ($_FILES["avatar"]["type"] == "image/jpg") || ($_FILES["avatar"]["type"] == "image/pjpeg") || ($_FILES["avatar"]["type"] == "image/x-png") || ($_FILES["avatar"]["type"] == "image/png")) && ($_FILES["avatar"]["size"] < 2048000)){
                 move_uploaded_file($_FILES["avatar"]["tmp_name"], "../upload/avatar");
-                echo(json_encode(["result"=>"success"]));
+                echo(json_encode(["result"=>"successful"]));
             }else{
                 echo(json_encode(["result"=>"failed","error"=>"Failed!"]));
             }
@@ -241,7 +243,144 @@ switch ($_GET["req"]){
             die(json_encode(["result"=>"failed","error"=>"No file data!"]));
         }
         break;
-
+    case "articleList":
+        $SQL = "SELECT * FROM `articles` WHERE `type`=0 ORDER BY `articles`.`id` DESC;";
+        $r = $mysql->query($SQL);
+        $data=[];
+        while($row=$r->fetch_object()){
+            $value=urldecode($row->value);
+            $obj=[
+                "id"=>$row->id,
+                "writer"=>$row->writer,
+                "comments"=>delete_comma($row->comments),
+                "comments_num"=>delete_comma($row->comments_num),
+                "like"=>delete_comma($row->like),
+                "like_num"=>delete_comma($row->like_num),
+                "value"=>urldecode($row->value),
+                "title"=>$row->title,
+                "desp"=>$row->desp,
+                "pic"=>$row->pic,
+                "create_date"=>$row->create_date
+            ];
+            $data[]=$obj;
+        }
+        $res=[
+            "result"=>"successful",
+            "data"=>$data
+        ];
+        echo(json_encode($res));
+        break;
+    case "articleListAll":
+        $SQL = "SELECT * FROM `articles`";
+        $r = $mysql->query($SQL);
+        $data=[];
+        while($row=$r->fetch_object()){
+            $value=urldecode($row->value);
+            $obj=[
+                "id"=>$row->id,
+                "writer"=>$row->writer,
+                "comments"=>delete_comma($row->comments),
+                "comments_num"=>delete_comma($row->comments_num),
+                "like"=>delete_comma($row->like),
+                "like_num"=>delete_comma($row->like_num),
+                "value"=>urldecode($row->value),
+                "title"=>$row->title,
+                "desp"=>$row->desp,
+                "pic"=>$row->pic,
+                "type"=>$row->type,
+                "create_date"=>$row->create_date
+            ];
+            $data[]=$obj;
+        }
+        $res=[
+            "result"=>"successful",
+            "data"=>$data
+        ];
+        echo(json_encode($res));
+        break;
+    case "getValue":
+        $SQL = "SELECT * FROM `articles` WHERE `id`={$_GET["id"]};";
+        $r = $mysql->query($SQL);
+        if($r->num_rows==0){
+            die(json_encode(["result"=>"failed","error"=>"No Article Selected!"]));
+        }else{
+            $row=$r->fetch_object();
+            $row->value=urldecode($row->value);
+            $row->like=delete_comma($row->like);
+            $row->comments=delete_comma($row->comments);
+            echo(json_encode(["result"=>"successful","data"=>$row]));
+        }
+        break;
+    case "getComments":
+        if(isset($_GET["id"])){
+            $SQL="SELECT * FROM `articles` WHERE `id`={$_GET["id"]} AND `type`=0;";
+            $r=$mysql->query($SQL);
+            $row=$r->fetch_object();
+            $comments=delete_comma($row->comments);
+            $SQL="SELECT * FROM `articles` WHERE `id` in({$comments}) AND `type`=1;";
+            $r=$mysql->query($SQL);
+            $data=[];
+            while($row=$r->fetch_object()){
+                $row->writer=urldecode($row->writer);
+                $row->value=urldecode($row->value);
+                $data[]=$row;
+            }
+            echo(json_encode(["result"=>"successful","data"=>$data]));
+        }else{
+            die(json_encode(["result"=>"failed","error"=>"No Article Selected!"]));
+        }
+        break;
+    case "getCommentsNum":
+        if(isset($_GET["id"])){
+            $SQL="SELECT `comments_num` FROM `articles` WHERE `id`={$_GET["id"]} AND `type`=0;";
+            $r=$mysql->query($SQL);
+            $row=$r->fetch_object();
+            $data=["comments_num"=>$row->comments_num];
+            echo(json_encode(["result"=>"successful","data"=>$data]));
+        }else{
+            die(json_encode(["result"=>"failed","error"=>"No Article Selected!"]));
+        }
+        break;
+    case "getLikeNum":
+        if(isset($_GET["id"])){
+            $SQL="SELECT `like_num` FROM `articles` WHERE `id`={$_GET["id"]} AND `type`=0;";
+            $r=$mysql->query($SQL);
+            $row=$r->fetch_object();
+            $data=["like_num"=>$row->like_num];
+            echo(json_encode(["result"=>"successful","data"=>$data]));
+        }else{
+            die(json_encode(["result"=>"failed","error"=>"No Article Selected!"]));
+        }
+        break;
+    case "isLogin":
+        if(checkCookie()){
+            echo(json_encode(["login"=>1]));
+        }else{
+            echo(json_encode(["login"=>0]));
+        }
+        break;
+    case "logout":
+        if(checkCookie()){
+            setcookie("username","",time()-10,"/");
+            setcookie("key","",time()-10,"/");
+            echo(json_encode(["result"=>"successful","username"=>$_COOKIE["username"]]));
+        }else{
+            echo(json_encode(["result"=>"failed","error"=>"Permission Dined!"]));
+        }
+        break;
+    case "queryArticles":
+        break;
+    case "uploadBase64":
+        $_POST["base64"]=substr($_POST["base64"],strpos($_POST["base64"],",")+1);
+        if(isset($_POST["base64"])){
+            $img = base64_decode($_POST["base64"]);
+            $name=sha1(time()+rand(1,10000));
+            file_put_contents("../upload/".$name,$img);
+            echo(json_encode(["result"=>"successful","filename"=>$name,"i"=>$_POST["i"]]));
+        }else{
+            die(json_encode(["result"=>"failed","error"=>"No file data!"]));
+        }
+        break;
     default:
         echo(json_encode(["result"=>"failed","error"=>"Unsolved request!"]));
         break;

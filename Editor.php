@@ -44,7 +44,7 @@ if(!checkCookie()){
             <div class="img-upload">
                 <img src="upload/title5.jpg">
                 <div class="float-button">
-                    <form id="uploadForm" name="uploadForm" action="php/putData.php?req=uploadAvatar" method= "post" enctype ="multipart/form-data">
+                    <form id="uploadForm" name="uploadForm" action="../Blog/php/Data.php?req=uploadAvatar" method= "post" enctype ="multipart/form-data">
                     <input class="file-select" type="file" name="avatar"/><input class="file-select" type="button" value="上传"/>
                     </form>
                 </div>

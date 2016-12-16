@@ -62,6 +62,7 @@
         }
         ?>
     </div>
+
     <div class="comment">
         <div class="likes-and-comments">
             <div>

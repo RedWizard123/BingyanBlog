@@ -6,14 +6,14 @@ function q(s){
 var _index_onload =function() {
     if(id!=-1){
         reqwest({
-            url: 'php/getData.php?req=getValue&id='+id,
+            url: 'php/Data.php?req=getValue&id='+id,
             method: 'get',
             success: function(resp){
-                if(resp.result=="success"){
-                    if(resp.data.sub_articles==""){
+                if(resp.result=="successful"){
+                    if(resp.data.comments==""){
                         q("#comments-n").innerHTML="0";
                     }else{
-                        q("#comments-n").innerHTML=resp.data.sub_articles.split(',').length;
+                        q("#comments-n").innerHTML=resp.data.comments.split(',').length;
                     }
                     if(resp.data.like==""){
                         q("#likes-n").innerHTML="0";
@@ -21,11 +21,10 @@ var _index_onload =function() {
                         q("#likes-n").innerHTML=resp.data.like.split(',').length;
                     }
                     reqwest({
-                        url: 'php/getData.php?req=getComments&id='+id,
+                        url: 'php/Data.php?req=getComments&id='+id,
                         method: 'get',
                         success: function(resp){
-
-                            if(resp.result=="success"){
+                            if(resp.result=="successful"){
                                 q("div.insert-to").innerHTML="";
                                 for(var i=0;i<resp.data.length;i++){
                                     var cloneDiv= q("div.comments-items").cloneNode(true);
@@ -53,13 +52,13 @@ var _index_onload =function() {
 function like_plus(){
     if(id!=-1){
         reqwest({
-            url: 'php/putData.php?req=likePlus',
+            url: 'php/Data.php?req=likePlus',
             method: 'get',
             data:{
                 "id":id
             },
             success: function(resp){
-                if(resp.result=="success"){
+                if(resp.result=="successful"){
                     alert("已赞！");
                     _index_onload();
                 }else{
@@ -81,7 +80,7 @@ function add_comments(){
     }
     if(id!=-1){
         reqwest({
-            url: 'php/putData.php?req=addComment',
+            url: 'php/Data.php?req=addComment',
             method: 'post',
             data:{
                 "id":id,
@@ -89,7 +88,7 @@ function add_comments(){
                 "comment":q("div.input-comments>textarea").value
             },
             success: function(resp){
-                if(resp.result=="success"){
+                if(resp.result=="successful"){
                     alert("已提交评论！");
                     q("div.input-comments>input").value="";
                     q("div.input-comments>textarea").value="";

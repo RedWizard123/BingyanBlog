@@ -16,7 +16,7 @@ $conn= mysql_connect($host,$AK,$SK);
 $host="localhost";
 $AK="root";
 $SK="hzylovelyl";
-$db_name="hzytest";
+$db_name="blog";
 $mysql=new mysqli();
 $mysql->connect($host,$AK,$SK,$db_name);
 ?>

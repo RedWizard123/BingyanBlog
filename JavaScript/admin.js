@@ -1,14 +1,14 @@
 var index_onload = function(){
     q("#in3").onclick=function(){
         reqwest({
-            url: '../php/putData.php?req=login',
+            url: '../php/Data.php?req=login',
             method: 'post',
             data: {
                 username:q("#in1").value,
                 sha1_password:hex_sha1(q("#in2").value)
             },
             success: function(resp){
-                if(resp.result=="success"){
+                if(resp.result=="successful"){
                     window.location="../Editor.php";
                 }else{
                     alert("登录失败!");
@@ -33,10 +33,10 @@ function slide_to(n){
 
 var admin_onload=function(){
     reqwest({
-        url: '../php/getData.php?req=articleList',
+        url: '../php/Data.php?req=articleList',
         method: 'get',
         success: function(resp){
-            if(resp.result=="success"){
+            if(resp.result=="successful"){
                 for(var i=0;i<resp.data.length;i++){
                     var cloneDiv= q("li.articles-list.hidden").cloneNode(true);
                     q("ul.articles-ul").appendChild(cloneDiv);
@@ -67,13 +67,13 @@ var admin_onload=function(){
 
 function delete_article(id){
     reqwest({
-        url: '../php/putData.php?req=deleteArticle',
+        url: '../php/Data.php?req=deleteArticle',
         method: 'post',
         data: {
             id:id
         },
         success: function(resp){
-            if(resp.result=="success"){
+            if(resp.result=="successful"){
                 if(confirm("确定要删除这篇文章吗？")){
                     if(confirm("真的没点错吗？")){
                         if(confirm("再问一遍要删除吗？")){
@@ -92,11 +92,11 @@ function delete_article(id){
 function upload_avatar(){
     var oData = new FormData(document.forms.namedItem("uploadForm"));
     var oReq = new XMLHttpRequest();
-    oReq.open( "POST", "../php/putData.php?req=putBlogerAvatar" , true );
+    oReq.open( "POST", "../php/Data.php?req=putBlogerAvatar" , true );
     oReq.onload = function() {
         if (oReq.status == 200){
             var json=eval("("+oReq.responseText+");");
-            if(json.result=="success"){
+            if(json.result=="successful"){
                 alert("上传成功！");
                 window.location="admin.php";
 
